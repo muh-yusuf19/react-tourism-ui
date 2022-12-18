@@ -41,7 +41,7 @@ const TourSlide = () => {
         >
             {product.map(item => (
                 <SwiperSlide key={item.id}>
-                    <div className="flex flex-col bg-white rounded-lg shadow-lg">
+                    <div className="lg:w-[280px] flex flex-col bg-white rounded-lg shadow-lg">
                         <img
                             src={`./${item.image}`}
                             alt="Slide"

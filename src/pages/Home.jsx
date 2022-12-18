@@ -11,7 +11,7 @@ const Home = () => {
             <section className="w-full h-full lg:h-screen lg:relative bg-cover bg-[url('/background.jpg')]">
                 <div className="lg:absolute lg:inset-0 lg:flex lg:flex-col">
                     <Navbar />
-                    <div className="lg:grow lg:flex lg:flex-col lg:justify-center">
+                    <div className="grid grid-cols-1 lg:my-auto">
                         <div className="flex flex-col md:flex-row gap-6">
                             <div className="w-full md:w-1/2 space-y-6 py-4 md:py-6 px-6 lg:pl-14">
                                 <h1 className="text-4xl lg:text-6xl xl:text-8xl 2xl:text-9xl text-gray-700 md:text-white font-bold tracking-wide">
@@ -21,7 +21,7 @@ const Home = () => {
                                     Lorem ipsum, dolor sit amet consectetur
                                     adipisicing elit. Provident fuga ipsa,
                                     quisquam asperiores magni consectetur
-                                    consequuntur hic{" "}
+                                    consequuntur hic
                                 </p>
                                 <button className="bg-white text-lg px-4 py-2 text-gray-700 rounded-md">
                                     Explore
