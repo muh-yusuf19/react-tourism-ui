@@ -43,43 +43,20 @@ const Navbar = () => {
             </div>
 
             {/* Tab and Desktop Nav */}
-            <nav
-                className={`${
-                    openNav ? "flex" : "hidden"
-                } px-4 md:flex flex-col md:flex-row text-gray-700 md:items-center md:justify-end`}
-            >
-                <Link
-                    className="text-lg font-medium md:px-4 py-2 font-medium transition transfrom duration-150 md:mt-0 hover:-translate-y-2 focus:outline-none focus:text-emerald-600"
-                    to="/"
-                >
+            <nav className={`${ openNav ? "flex" : "hidden"} px-4 md:flex flex-col md:flex-row text-gray-700 md:items-center md:justify-end`}>
+                <Link to="/" className="text-lg font-medium md:px-4 py-2 font-medium transition transfrom duration-150 md:mt-0 hover:-translate-y-2 focus:outline-none focus:text-emerald-600">
                     Home
                 </Link>
 
-                <Link
-                    className="text-lg font-medium md:px-4 py-2 font-medium transition transfrom duration-150 md:mt-0 hover:-translate-y-2 focus:outline-none focus:text-emerald-600"
-                    to="/explore"
-                >
+                <Link to="/explore" className="text-lg font-medium md:px-4 py-2 font-medium transition transfrom duration-150 md:mt-0 hover:-translate-y-2 focus:outline-none focus:text-emerald-600">
                     Explore
                 </Link>
 
-                <Link
-                    className="text-lg font-medium md:px-4 py-2 font-medium transition transfrom duration-150 md:mt-0 hover:-translate-y-2 focus:outline-none focus:text-emerald-600"
-                    to="/single"
-                >
-                    Single
-                </Link>
-
-                <Link
-                    className="text-lg font-medium md:px-4 py-2 font-medium transition transfrom duration-150 md:mt-0 hover:-translate-y-2 focus:outline-none focus:text-emerald-600"
-                    to="/login"
-                >
+                <Link to="/login" className="text-lg font-medium md:px-4 py-2 font-medium transition transfrom duration-150 md:mt-0 hover:-translate-y-2 focus:outline-none focus:text-emerald-600">
                     Login
                 </Link>
 
-                <Link
-                    className="text-lg font-medium md:px-4 py-2 font-medium transition transfrom duration-150 md:mt-0 hover:-translate-y-2 focus:outline-none focus:text-emerald-6"
-                    to="/register"
-                >
+                <Link to="/register" className="text-lg font-medium md:px-4 py-2 font-medium transition transfrom duration-150 md:mt-0 hover:-translate-y-2 focus:outline-none focus:text-emerald-6">
                     Register
                 </Link>
             </nav>

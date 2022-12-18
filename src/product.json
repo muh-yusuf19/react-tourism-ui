@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "name": "Name of Tourism 01",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec odio sit amet mi faucibus porta. Maecenas non orci vitae sem aliquam imperdiet. Integer sed nunc interdum felis posuere vehicula. Aliquam nunc ligula, rutrum ut odio sed, ullamcorper laoreet ante. Maecenas a molestie elit. In a libero lorem. Duis tristique vehicula urna efficitur laoreet. Proin vel turpis efficitur lacus lobortis facilisis quis in ex. Integer porta massa non dolor vehicula fermentum. Sed sed ex eu orci mollis fermentum nec viverra sapien.",
+        "price": 100.000,
+        "image": "slide01.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Name of Tourism 02",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec odio sit amet mi faucibus porta. Maecenas non orci vitae sem aliquam imperdiet. Integer sed nunc interdum felis posuere vehicula. Aliquam nunc ligula, rutrum ut odio sed, ullamcorper laoreet ante. Maecenas a molestie elit. In a libero lorem. Duis tristique vehicula urna efficitur laoreet. Proin vel turpis efficitur lacus lobortis facilisis quis in ex. Integer porta massa non dolor vehicula fermentum. Sed sed ex eu orci mollis fermentum nec viverra sapien.",
+        "price": 370.000,
+        "image": "slide02.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Name of Tourism 03",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec odio sit amet mi faucibus porta. Maecenas non orci vitae sem aliquam imperdiet. Integer sed nunc interdum felis posuere vehicula. Aliquam nunc ligula, rutrum ut odio sed, ullamcorper laoreet ante. Maecenas a molestie elit. In a libero lorem. Duis tristique vehicula urna efficitur laoreet. Proin vel turpis efficitur lacus lobortis facilisis quis in ex. Integer porta massa non dolor vehicula fermentum. Sed sed ex eu orci mollis fermentum nec viverra sapien.",
+        "price": 200.000,
+        "image": "slide03.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Name of Tourism 04",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec odio sit amet mi faucibus porta. Maecenas non orci vitae sem aliquam imperdiet. Integer sed nunc interdum felis posuere vehicula. Aliquam nunc ligula, rutrum ut odio sed, ullamcorper laoreet ante. Maecenas a molestie elit. In a libero lorem. Duis tristique vehicula urna efficitur laoreet. Proin vel turpis efficitur lacus lobortis facilisis quis in ex. Integer porta massa non dolor vehicula fermentum. Sed sed ex eu orci mollis fermentum nec viverra sapien.",
+        "price": 150.000,
+        "image": "slide04.jpg"
+    }
+]

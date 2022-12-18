@@ -1,5 +1,7 @@
+import { Link } from "react-router-dom"
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
+import product from "../product.json"
 
 const Explore = () => {
     return (
@@ -24,77 +26,25 @@ const Explore = () => {
 
             <section className="py-16 px-6 w-full md:max-w-2xl lg:max-w-3xl xl:max-w-4xl md:mx-auto">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="w-full relative rounded-xl overflow-hidden shadow-lg">
-                        <img
-                            src="./slide01.jpg"
-                            alt="Slide"
-                            className="object-cover object-center md:h-[300px] lg:h-[430px]"
-                            width="600"
-                            height="800"
-                        />
-                        <div className="text-white absolute inset-x-0 bottom-0 p-4 space-y-4 text-center">
-                            <h1 className="md:text-2xl tracking-widest xl:text-3xl font-bold tracking-wide">
-                                Name Tourism
-                            </h1>
-                            <button className="bg-gray-700 text-sm px-4 py-2 text-white rounded-md">
-                                More
-                            </button>
+                    {product.map(item => (
+                        <div className="w-full relative rounded-xl overflow-hidden shadow-lg">
+                            <img
+                                src={`./${item.image}`}
+                                alt="Slide"
+                                className="object-cover object-center md:h-[300px] lg:h-[430px]"
+                                width="600"
+                                height="800"
+                            />
+                            <div className="text-white absolute inset-x-0 bottom-0 p-4 space-y-4 text-center">
+                                <h1 className="mb-4 md:text-2xl tracking-widest xl:text-3xl font-bold tracking-wide">
+                                    {item.name}
+                                </h1>
+                                <Link to={`/explore/${item.id}`} className="bg-gray-700 text-sm px-4 py-2 text-white rounded-md">
+                                    More
+                                </Link>
+                            </div>
                         </div>
-                    </div>
-
-                    <div className="w-full relative rounded-xl overflow-hidden shadow-lg">
-                        <img
-                            src="./slide02.jpg"
-                            alt="Slide"
-                            className="object-cover object-center md:h-[300px] lg:h-[430px]"
-                            width="600"
-                            height="800"
-                        />
-                        <div className="text-white absolute inset-x-0 bottom-0 p-4 space-y-4 text-center">
-                            <h1 className="md:text-2xl tracking-widest xl:text-3xl font-bold tracking-wide">
-                                Name Tourism
-                            </h1>
-                            <button className="bg-gray-700 text-sm px-4 py-2 text-white rounded-md">
-                                More
-                            </button>
-                        </div>
-                    </div>
-
-                    <div className="w-full relative rounded-xl overflow-hidden shadow-lg">
-                        <img
-                            src="./slide03.jpg"
-                            alt="Slide"
-                            className="object-cover object-center md:h-[300px] lg:h-[430px]"
-                            width="600"
-                            height="800"
-                        />
-                        <div className="text-white absolute inset-x-0 bottom-0 p-4 space-y-4 text-center">
-                            <h1 className="md:text-2xl tracking-widest xl:text-3xl font-bold tracking-wide">
-                                Name Tourism
-                            </h1>
-                            <button className="bg-gray-700 text-sm px-4 py-2 text-white rounded-md">
-                                More
-                            </button>
-                        </div>
-                    </div>
-
-                    <div className="w-full relative rounded-xl overflow-hidden shadow-lg">
-                        <img
-                            src="./slide04.jpg"
-                            alt="Slide"
-                            className="object-cover object-center md:h-[300px] lg:h-[430px]"
-                            width="600"
-                            height="800"
-                        />
-                        <div className="text-white absolute inset-x-0 bottom-0 p-4 space-y-4 text-center">
-                            <h1 className="md:text-2xl tracking-widest xl:text-3xl font-bold tracking-wide">
-                                Name Tourism
-                            </h1>
-                            <button className="bg-gray-700 text-sm px-4 py-2 text-white rounded-md">
-                                More
-                            </button>
-                        </div>
-                    </div>
+                    ))}
                 </div>
             </section>
 

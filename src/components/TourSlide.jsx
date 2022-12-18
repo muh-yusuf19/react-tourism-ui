@@ -1,10 +1,10 @@
 import { Swiper, SwiperSlide } from "swiper/react"
-
+import { Pagination, EffectCoverflow, Autoplay } from "swiper"
 import "swiper/css"
 import "swiper/css/pagination"
 import "swiper/css/effect-coverflow"
-
-import { Pagination, EffectCoverflow, Autoplay } from "swiper"
+import product from "../product.json"
+import { Link } from "react-router-dom"
 
 const TourSlide = () => {
     return (
@@ -39,90 +39,28 @@ const TourSlide = () => {
                 },
             }}
         >
-            <SwiperSlide>
-                <div className="flex flex-col bg-white rounded-lg shadow-lg">
-                    <img
-                        src="./slide01.jpg"
-                        alt="Slide"
-                        className="object-cover rounded-t-lg h-52 md:h-40 lg:h-64 xl:h-72"
-                    />
-                    <div className="p-4 space-y-4">
-                        <h1 className="md:text-lg text-xl font-bold tracking-wide">
-                            Name Tourism
-                        </h1>
-                        <p className="text-sm">
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Soluta, tempore.
-                        </p>
-                        <button className="bg-gray-700 text-sm px-4 py-2 text-white rounded-md">
-                            More
-                        </button>
+            {product.map(item => (
+                <SwiperSlide key={item.id}>
+                    <div className="flex flex-col bg-white rounded-lg shadow-lg">
+                        <img
+                            src={`./${item.image}`}
+                            alt="Slide"
+                            className="object-cover rounded-t-lg h-52 md:h-40 lg:h-64 xl:h-72"
+                        />
+                        <div className="p-4 space-y-4">
+                            <h1 className="text-base font-bold tracking-wide">
+                                {item.name}
+                            </h1>
+                            <p className="text-sm truncate overflow-hidden h-12">
+                                {item.description}
+                            </p>
+                            <Link to={`/explore/${item.id}`} className="bg-gray-700 text-sm px-4 py-2 text-white rounded-md">
+                                More
+                            </Link>
+                        </div>
                     </div>
-                </div>
-            </SwiperSlide>
-            <SwiperSlide>
-                <div className="flex flex-col bg-white rounded-lg shadow-lg">
-                    <img
-                        src="./slide02.jpg"
-                        alt="Slide"
-                        className="object-cover rounded-t-lg h-52 md:h-40 lg:h-64 xl:h-72"
-                    />
-                    <div className="p-4 space-y-4">
-                        <h1 className="md:text-lg text-xl font-bold tracking-wide">
-                            Name Tourism
-                        </h1>
-                        <p className="text-sm">
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Soluta, tempore.
-                        </p>
-                        <button className="bg-gray-700 text-sm px-4 py-2 text-white rounded-md">
-                            More
-                        </button>
-                    </div>
-                </div>
-            </SwiperSlide>
-            <SwiperSlide>
-                <div className="flex flex-col bg-white rounded-lg shadow-lg">
-                    <img
-                        src="./slide03.jpg"
-                        alt="Slide"
-                        className="object-cover rounded-t-lg h-52 md:h-40 lg:h-64 xl:h-72"
-                    />
-                    <div className="p-4 space-y-4">
-                        <h1 className="md:text-lg text-xl font-bold tracking-wide">
-                            Name Tourism
-                        </h1>
-                        <p className="text-sm">
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Soluta, tempore.
-                        </p>
-                        <button className="bg-gray-700 text-sm px-4 py-2 text-white rounded-md">
-                            More
-                        </button>
-                    </div>
-                </div>
-            </SwiperSlide>
-            <SwiperSlide>
-                <div className="flex flex-col bg-white rounded-lg shadow-lg">
-                    <img
-                        src="./slide04.jpg"
-                        alt="Slide"
-                        className="object-cover rounded-t-lg h-52 md:h-40 lg:h-64 xl:h-72"
-                    />
-                    <div className="p-4 space-y-4">
-                        <h1 className="md:text-lg text-xl font-bold tracking-wide">
-                            Name Tourism
-                        </h1>
-                        <p className="text-sm">
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Soluta, tempore.
-                        </p>
-                        <button className="bg-gray-700 text-sm px-4 py-2 text-white rounded-md">
-                            More
-                        </button>
-                    </div>
-                </div>
-            </SwiperSlide>
+                </SwiperSlide>
+            ))}
         </Swiper>
     )
 }
