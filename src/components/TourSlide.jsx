@@ -5,6 +5,7 @@ import "swiper/css/pagination"
 import "swiper/css/effect-coverflow"
 import product from "../product.json"
 import { Link } from "react-router-dom"
+import { Button, Card, CardBody, Heading, Image, VStack, Text } from "@chakra-ui/react"
 
 const TourSlide = () => {
     return (
@@ -37,28 +38,19 @@ const TourSlide = () => {
                     slidesPerView: 3,
                     spaceBetween: -20,
                 },
-            }}
-        >
+            }}>
             {product.map(item => (
                 <SwiperSlide key={item.id}>
-                    <div className="lg:w-[280px] flex flex-col bg-white rounded-lg shadow-lg">
-                        <img
-                            src={`./${item.image}`}
-                            alt="Slide"
-                            className="object-cover rounded-t-lg h-52 md:h-40 lg:h-64 xl:h-72"
-                        />
-                        <div className="p-4 space-y-4">
-                            <h1 className="text-base font-bold tracking-wide">
-                                {item.name}
-                            </h1>
-                            <p className="text-sm truncate overflow-hidden h-12">
-                                {item.description}
-                            </p>
-                            <Link to={`/explore/${item.id}`} className="bg-gray-700 text-sm px-4 py-2 text-white rounded-md">
-                                More
-                            </Link>
-                        </div>
-                    </div>
+                    <Card borderRadius={'lg'} overflow="hidden">
+                      <Image objectFit={'cover'} height={['52', '40', '64', '72']} src={`./${item.image}`} />
+                      <CardBody bg={'white'}>
+                        <VStack spacing={'2'}>
+                          <Heading size={'md'}>{item.name}</Heading>
+                          <Text noOfLines={[1, 2]}>{item.description}</Text>
+                          <Button colorScheme={'teal'}>More</Button>
+                        </VStack>
+                      </CardBody>
+                    </Card>
                 </SwiperSlide>
             ))}
         </Swiper>

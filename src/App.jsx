@@ -1,3 +1,4 @@
+import { ChakraProvider } from "@chakra-ui/react"
 import { Route, Routes } from "react-router-dom"
 import { CtxCartProvider } from "./context/ctxCart"
 import Explore from "./pages/Explore"
@@ -8,6 +9,7 @@ import Single from "./pages/Single"
 
 function App() {
     return (
+        <ChakraProvider>
         <CtxCartProvider>
             <Routes>
                 <Route path="/" element={<Home />}></Route>
@@ -17,6 +19,7 @@ function App() {
                 <Route path="/explore/:id" element={<Single />}></Route>
             </Routes>
         </CtxCartProvider>
+        </ChakraProvider>
     )
 }
 

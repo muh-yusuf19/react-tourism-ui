@@ -27,7 +27,7 @@ const Explore = () => {
             <section className="py-16 px-6 w-full md:max-w-2xl lg:max-w-3xl xl:max-w-4xl md:mx-auto">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {product.map(item => (
-                        <div className="w-full relative rounded-xl overflow-hidden shadow-lg">
+                        <div key={item.id} className="w-full relative rounded-xl overflow-hidden shadow-lg">
                             <img
                                 src={`./${item.image}`}
                                 alt="Slide"

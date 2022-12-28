@@ -1,29 +1,30 @@
 import React, { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
+import CartDrawer from "./CartDrawer"
 
 const Navbar = () => {
     const [openNav, setOpenNav] = useState(false)
+    const btnRef = React.useRef()
+
     return (
+        <>
+        <div className="md:hidden flex flex-col justify-center items-end p-4 md:px-6 lg:px-8">
+          <CartDrawer />
+        </div>
         <div
             onBlur={() => setOpenNav(!openNav)}
             className={`w-full flex ${
                 openNav ? "flex-col bg-white" : null
-            } md:flex-row md:bg-transparent transition duration-300 max-w-screen-xl p-4 md:px-6 lg:px-8 mx-auto md:items-center md:justify-between`}
-        >
+            } md:flex-row md:bg-transparent transition duration-300 max-w-screen-xl p-4 md:px-6 lg:px-8 mx-auto md:items-center md:justify-between`}>
+
             {/* Logo */}
             <div className="flex-1 flex flex-row items-center justify-between">
                 <p className="text-gray-700 text-2xl font-bold px-4 py-2 tracking-wide text-bold focus:outline-none focus:border-2 focus:border-black">
                     <Link to="/">Logo Here</Link>
                 </p>
-                <button
-                    onClick={() => setOpenNav(!openNav)}
-                    className="md:hidden rounded-lg focus:outline-none focus:shadow-outline"
-                >
-                    <svg
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        className="w-6 h-6"
-                    >
+
+                <button ref={btnRef} onClick={() => setOpenNav(!openNav)} className="md:hidden rounded-lg focus:outline-none focus:shadow-outline" >
+                    <svg fill="currentColor" viewBox="0 0 20 20" className="w-6 h-6" >
                         {openNav ? (
                             <path
                                 fillRule="evenodd"
@@ -59,8 +60,13 @@ const Navbar = () => {
                 <Link to="/register" className="text-lg font-medium md:px-4 py-2 font-medium transition transfrom duration-150 md:mt-0 hover:-translate-y-2 focus:outline-none focus:text-emerald-6">
                     Register
                 </Link>
+
+                <div className="hidden md:block">
+                  <CartDrawer />
+                </div>
             </nav>
         </div>
+        </>
     )
 }
 
