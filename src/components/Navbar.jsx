@@ -1,92 +1,99 @@
-import { Hide, HStack } from "@chakra-ui/react"
-import React, { useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import {
+  Avatar,
+  Box,
+  Button,
+  Flex,
+  Hide,
+  HStack,
+  IconButton,
+  Image,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Show,
+} from "@chakra-ui/react"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faUser, faHeart } from "@fortawesome/free-solid-svg-icons"
+import React from "react"
+import { Link } from "react-router-dom"
 import CartDrawer from "./CartDrawer"
+import LinkList from "./LinkList"
+import MobileMenu from "./MobileMenu"
 
 const Navbar = () => {
-  const [openNav, setOpenNav] = useState(false)
-  const btnRef = React.useRef()
-
   return (
     <>
-      <div
-        className={`w-full flex ${
-          openNav ? "flex-col bg-white" : null
-        } md:flex-row md:bg-transparent transition duration-300 max-w-screen-xl p-4 md:px-6 lg:px-8 mx-auto md:items-center md:justify-between`}
+      {/* Login Registration */}
+      <Flex
+        px={["4", "6", "8"]}
+        py={"2"}
+        gap={"4"}
+        align={"center"}
+        justify={"end"}
       >
-        {/* Logo */}
-        <div className="flex-1 flex flex-row items-center justify-between">
-          <p className="text-gray-700 text-2xl font-bold px-4 py-2 tracking-wide text-bold focus:outline-none focus:border-2 focus:border-black">
-            <Link to="/">Logo Here</Link>
-          </p>
-          <HStack spacing={"4"} align={"center"}>
-            <Hide above="md">
-              <CartDrawer />
-            </Hide>
-            <button
-              ref={btnRef}
-              onClick={() => setOpenNav(!openNav)}
-              className="md:hidden rounded-lg focus:outline-none focus:shadow-outline"
-            >
-              <svg fill="currentColor" viewBox="0 0 20 20" className="w-6 h-6">
-                {openNav ? (
-                  <path
-                    fillRule="evenodd"
-                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  ></path>
-                ) : (
-                  <path
-                    // x-show="!open"
-                    fillRule="evenodd"
-                    d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z"
-                    clipRule="evenodd"
-                  ></path>
-                )}
-              </svg>
-            </button>
-          </HStack>
-        </div>
-
-        {/* Tab and Desktop Nav */}
-        <nav
-          className={`${
-            openNav ? "flex" : "hidden"
-          } px-4 md:flex flex-col md:flex-row text-gray-700 md:items-center md:justify-end`}
-        >
-          <Link
-            to="/"
-            className="text-lg font-medium md:px-4 py-2 font-medium transition transfrom duration-150 md:mt-0 hover:-translate-y-2 focus:outline-none focus:text-emerald-600"
-          >
-            Home
-          </Link>
-
-          <Link
-            to="/explore"
-            className="text-lg font-medium md:px-4 py-2 font-medium transition transfrom duration-150 md:mt-0 hover:-translate-y-2 focus:outline-none focus:text-emerald-600"
-          >
-            Explore
-          </Link>
-
-          <Link
-            to="/login"
-            className="text-lg font-medium md:px-4 py-2 font-medium transition transfrom duration-150 md:mt-0 hover:-translate-y-2 focus:outline-none focus:text-emerald-600"
-          >
+        <Link to="/login">
+          <Button size={["xs", "sm"]} colorScheme={"green"}>
             Login
-          </Link>
-
-          <Link
-            to="/register"
-            className="text-lg font-medium md:px-4 py-2 font-medium transition transfrom duration-150 md:mt-0 hover:-translate-y-2 focus:outline-none focus:text-emerald-6"
-          >
+          </Button>
+        </Link>
+        <Box px={"0.5"} py={"4"} bg={"gray.800"} />
+        <Link to="/register">
+          <Button size={["xs", "sm"]} colorScheme={"blackAlpha"}>
             Register
-          </Link>
+          </Button>
+        </Link>
+      </Flex>
 
-          <div className="hidden md:block">
+      {/* Main Menu */}
+      <HStack
+        py={"2"}
+        px={["4", "6", "8"]}
+        align={"center"}
+        justify={"space-between"}
+      >
+        {/* List Menu */}
+        <Hide above="lg">
+          <MobileMenu />
+        </Hide>
+
+        {/* Logo */}
+        <Link to="/">
+          <Image objectFit={"contain"} src={`./logo.png`} h={["10", "14"]} />
+        </Link>
+
+        {/* Cart */}
+        <Hide above="lg">
+          <CartDrawer />
+        </Hide>
+
+        {/* Menu Item */}
+        <Show above="lg">
+          <LinkList />
+        </Show>
+
+        {/* CTA */}
+        <Show above="lg">
+          <HStack spacing={"4"}>
+            <IconButton
+              borderRadius={"full"}
+              icon={<FontAwesomeIcon icon={faHeart} />}
+            />
             <CartDrawer />
-          </div>
-        </nav>
-      </div>
+            <Menu>
+              <MenuButton>
+                <Avatar size={"sm"} icon={<FontAwesomeIcon icon={faUser} />} />
+              </MenuButton>
+              <MenuList px={"2"}>
+                <MenuItem>Download</MenuItem>
+                <MenuItem>Mark as Draft</MenuItem>
+                <MenuItem>Delete</MenuItem>
+                <MenuItem>Attend a Workshop</MenuItem>
+              </MenuList>
+            </Menu>
+          </HStack>
+        </Show>
+      </HStack>
     </>
   )
 }

@@ -13,6 +13,7 @@ import {
 } from "@chakra-ui/react"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import BottomNav from "../components/BottomNav"
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 
@@ -39,48 +40,59 @@ const Login = () => {
   }
 
   return (
-    <main className="font-raleway h-screen flex flex-col justify-between">
-      <Navbar />
-      <Flex w={["full", "50%"]} mx={"auto"} align={"center"} px={["6", "2"]}>
-        <Card
-          direction={{ base: "column", sm: "row" }}
-          borderRadius={"lg"}
-          overflow="hidden"
-          my={["8", "16"]}
-          shadow={"lg"}
-        >
-          <Image
-            w={["100%", "35%"]}
-            objectFit={"cover"}
-            src={`./background.jpg`}
-          />
-          <CardBody>
-            <VStack spacing={"4"} align={"start"}>
-              <Heading color={"gray.700"}>Login Page</Heading>
-              <FormControl pt={"4"}>
-                <FormLabel>Email</FormLabel>
-                <Input type="email" />
-              </FormControl>
-              <FormControl pt={"4"}>
-                <FormLabel>Password</FormLabel>
-                <Input type="password" />
-              </FormControl>
-              {loading ? (
-                <Button
-                  isLoading
-                  loadingText="Submitting"
-                  colorScheme={"teal"}
+    <main className="font-raleway">
+      <section className="w-full h-full lg:h-screen bg-cover bg-[url('/background.jpg')]">
+        <div className="h-full flex flex-col">
+          <Navbar />
+          <div className="w-full max-w-screen-xl m-auto flex flex-col md:flex-row">
+            <Flex w={["full", "50%"]} mx={"auto"} align={"center"}>
+              <Card
+                bg={"white"}
+                direction={{ base: "column", sm: "row" }}
+                borderRadius={"lg"}
+                overflow="hidden"
+                shadow={"lg"}
+              >
+                <Image
+                  w={["100%", "35%"]}
+                  objectFit={"cover"}
+                  src={`./background.jpg`}
                 />
-              ) : (
-                <Button onClick={() => handleSubmit()} colorScheme={"teal"}>
-                  Submit
-                </Button>
-              )}
-            </VStack>
-          </CardBody>
-        </Card>
-      </Flex>
+                <CardBody>
+                  <VStack spacing={"4"} align={"start"}>
+                    <Heading color={"gray.700"}>Login Page</Heading>
+                    <FormControl pt={"4"}>
+                      <FormLabel>Email</FormLabel>
+                      <Input type="email" />
+                    </FormControl>
+                    <FormControl pt={"4"}>
+                      <FormLabel>Password</FormLabel>
+                      <Input type="password" />
+                    </FormControl>
+                    {loading ? (
+                      <Button
+                        isLoading
+                        loadingText="Submitting"
+                        colorScheme={"teal"}
+                      />
+                    ) : (
+                      <Button
+                        onClick={() => handleSubmit()}
+                        colorScheme={"teal"}
+                      >
+                        Submit
+                      </Button>
+                    )}
+                  </VStack>
+                </CardBody>
+              </Card>
+            </Flex>
+          </div>
+        </div>
+      </section>
+
       <Footer />
+      <BottomNav />
     </main>
   )
 }

@@ -13,6 +13,7 @@ import {
   Avatar,
   AvatarBadge,
   Heading,
+  IconButton,
 } from "@chakra-ui/react"
 import CartItem from "./CartItem"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -27,18 +28,20 @@ const CartDrawer = () => {
 
   return (
     <>
-      <Avatar
-        ref={btnRef}
-        onClick={onOpen}
-        size={"sm"}
-        icon={<FontAwesomeIcon icon={faCartShopping} />}
-      >
-        {cartItem.length > 0 && (
-          <AvatarBadge boxSize="1.5em" bg="green.500">
-            {cartItem.length}
-          </AvatarBadge>
-        )}
-      </Avatar>
+      <IconButton borderRadius={"full"}>
+        <Avatar
+          ref={btnRef}
+          onClick={onOpen}
+          size={"sm"}
+          icon={<FontAwesomeIcon icon={faCartShopping} />}
+        >
+          {cartItem.length > 0 && (
+            <AvatarBadge boxSize="1.5em" bg="green.500">
+              {cartItem.length}
+            </AvatarBadge>
+          )}
+        </Avatar>
+      </IconButton>
       <Drawer
         isOpen={isOpen}
         placement="right"

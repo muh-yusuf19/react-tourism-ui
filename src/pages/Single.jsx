@@ -20,6 +20,7 @@ import Gallery from "../components/Gallery"
 import Navbar from "../components/Navbar"
 import { useCartContext } from "../context/ctxCart"
 import product from "../product.json"
+import BottomNav from "../components/BottomNav"
 
 const Single = () => {
   const { id } = useParams()
@@ -47,8 +48,8 @@ const Single = () => {
     setTimeout(() => {
       addToCart(currProduct.id, qyt)
       toast({
-        title: "Login Successfully",
-        description: "Welcome back",
+        title: "Add to Cart",
+        description: "Item sucsessfully added",
         status: "success",
         position: "bottom-right",
         duration: 5000,
@@ -62,9 +63,9 @@ const Single = () => {
     <main className="font-raleway">
       <section className="w-full h-full bg-cover bg-[url('/background.jpg')]">
         <Navbar />
-        <div className="flex flex-col ">
+        <div className="flex flex-col py-16">
           <div className="max-w-full md:max-w-xl mx-auto">
-            <div className="text-center w-full space-y-6 py-4 md:py-6 px-6 lg:pl-14">
+            <div className="text-center w-full space-y-6">
               <h1 className="text-4xl lg:text-6xl xl:text-8xl text-white md:text-gray-700 font-bold tracking-wide">
                 Tourism
               </h1>
@@ -134,7 +135,9 @@ const Single = () => {
           </CardBody>
         </Card>
       </section>
+
       <Footer />
+      <BottomNav />
     </main>
   )
 }
