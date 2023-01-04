@@ -12,16 +12,39 @@ import {
   MenuItem,
   MenuList,
   Show,
+  useToast,
 } from "@chakra-ui/react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUser, faHeart } from "@fortawesome/free-solid-svg-icons"
 import React from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import CartDrawer from "./CartDrawer"
 import LinkList from "./LinkList"
 import MobileMenu from "./MobileMenu"
+import { useAuth } from "../context/authCtx"
 
 const Navbar = () => {
+  const { auth, setAuth } = useAuth()
+
+  // React router
+  const navigate = useNavigate()
+
+  // Chakra UI toast
+  const toast = useToast()
+
+  // Logout function
+  const logout = () => {
+    setAuth({})
+    navigate("/")
+    toast({
+      title: "Logout...",
+      description: "You are successfully logout",
+      status: "success",
+      position: "bottom-right",
+      duration: 5000,
+      isClosable: true,
+    })
+  }
   return (
     <>
       {/* Login Registration */}
@@ -86,12 +109,14 @@ const Navbar = () => {
               <MenuButton>
                 <Avatar size={"sm"} icon={<FontAwesomeIcon icon={faUser} />} />
               </MenuButton>
-              <MenuList px={"2"}>
-                <MenuItem>Download</MenuItem>
-                <MenuItem>Mark as Draft</MenuItem>
-                <MenuItem>Delete</MenuItem>
-                <MenuItem>Attend a Workshop</MenuItem>
-              </MenuList>
+              {auth?.accessToken && (
+                <MenuList px={"2"}>
+                  <MenuItem>Download</MenuItem>
+                  <MenuItem>Mark as Draft</MenuItem>
+                  <MenuItem>Delete</MenuItem>
+                  <MenuItem onClick={() => logout()}>Logout</MenuItem>
+                </MenuList>
+              )}
             </Menu>
           </Hide>
         </HStack>
