@@ -14,7 +14,7 @@ import {
   Heading,
   Flex,
 } from "@chakra-ui/react"
-import testimoni from "../testimoni.json"
+import testimoni from "../data/testimoni.json"
 
 const TestiSlide = () => {
   return (

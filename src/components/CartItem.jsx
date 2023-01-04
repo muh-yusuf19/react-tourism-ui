@@ -9,7 +9,7 @@ import {
   IconButton,
   SimpleGrid,
 } from "@chakra-ui/react"
-import product from "../product.json"
+import product from "../data/product.json"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faTrash } from "@fortawesome/free-solid-svg-icons"
 

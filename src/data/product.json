@@ -4,27 +4,35 @@
     "name": "Name of Tourism-01",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec odio sit amet mi faucibus porta. Maecenas non orci vitae sem aliquam imperdiet. Integer sed nunc interdum felis posuere vehicula. Aliquam nunc ligula, rutrum ut odio sed, ullamcorper laoreet ante. Maecenas a molestie elit. In a libero lorem. Duis tristique vehicula urna efficitur laoreet. Proin vel turpis efficitur lacus lobortis facilisis quis in ex. Integer porta massa non dolor vehicula fermentum. Sed sed ex eu orci mollis fermentum nec viverra sapien.",
     "price": 100000,
-    "image": "slide01.jpg"
+    "image": "slide01.jpg",
+    "reviewCount": 40,
+    "rating": 5
   },
   {
     "id": 2,
     "name": "Name of Tourism-02",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec odio sit amet mi faucibus porta. Maecenas non orci vitae sem aliquam imperdiet. Integer sed nunc interdum felis posuere vehicula. Aliquam nunc ligula, rutrum ut odio sed, ullamcorper laoreet ante. Maecenas a molestie elit. In a libero lorem. Duis tristique vehicula urna efficitur laoreet. Proin vel turpis efficitur lacus lobortis facilisis quis in ex. Integer porta massa non dolor vehicula fermentum. Sed sed ex eu orci mollis fermentum nec viverra sapien.",
     "price": 370000,
-    "image": "slide02.jpg"
+    "image": "slide02.jpg",
+    "reviewCount": 34,
+    "rating": 4
   },
   {
     "id": 3,
     "name": "Name of Tourism-03",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec odio sit amet mi faucibus porta. Maecenas non orci vitae sem aliquam imperdiet. Integer sed nunc interdum felis posuere vehicula. Aliquam nunc ligula, rutrum ut odio sed, ullamcorper laoreet ante. Maecenas a molestie elit. In a libero lorem. Duis tristique vehicula urna efficitur laoreet. Proin vel turpis efficitur lacus lobortis facilisis quis in ex. Integer porta massa non dolor vehicula fermentum. Sed sed ex eu orci mollis fermentum nec viverra sapien.",
     "price": 200000,
-    "image": "slide03.jpg"
+    "image": "slide03.jpg",
+    "reviewCount": 38,
+    "rating": 4
   },
   {
     "id": 4,
     "name": "Name of Tourism-04",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec odio sit amet mi faucibus porta. Maecenas non orci vitae sem aliquam imperdiet. Integer sed nunc interdum felis posuere vehicula. Aliquam nunc ligula, rutrum ut odio sed, ullamcorper laoreet ante. Maecenas a molestie elit. In a libero lorem. Duis tristique vehicula urna efficitur laoreet. Proin vel turpis efficitur lacus lobortis facilisis quis in ex. Integer porta massa non dolor vehicula fermentum. Sed sed ex eu orci mollis fermentum nec viverra sapien.",
     "price": 150000,
-    "image": "slide04.jpg"
+    "image": "slide04.jpg",
+    "reviewCount": 55,
+    "rating": 5
   }
 ]

@@ -14,15 +14,17 @@ const BottomNav = () => {
       <Flex
         align="center"
         pos="relative"
-        bg="green.50"
         position={"fixed"}
         w="full"
-        bottom="0"
-        py={"4"}
+        bottom="2"
         zIndex="sticky"
       >
         <HStack
-          w={"full"}
+          w={["90%", "75%", "60%"]}
+          mx="auto"
+          bg="green.50"
+          p="3"
+          borderRadius={"lg"}
           color={"green.400"}
           align={"center"}
           justify={"space-around"}

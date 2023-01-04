@@ -53,33 +53,35 @@ const Navbar = () => {
         justify={"space-between"}
       >
         {/* List Menu */}
-        <Hide above="lg">
+        <Hide above="md">
           <MobileMenu />
         </Hide>
 
         {/* Logo */}
         <Link to="/">
-          <Image objectFit={"contain"} src={`./logo.png`} h={["10", "14"]} />
+          <Image objectFit={"contain"} src={`/logo.png`} h={["10", "14"]} />
         </Link>
 
-        {/* Cart */}
-        <Hide above="lg">
+        {/* Menu */}
+        {/* <Hide above="lg">
           <CartDrawer />
-        </Hide>
+        </Hide> */}
 
         {/* Menu Item */}
-        <Show above="lg">
+        <Show above="md">
           <LinkList />
         </Show>
 
         {/* CTA */}
-        <Show above="lg">
-          <HStack spacing={"4"}>
+        <HStack spacing={"4"}>
+          <Hide below="lg">
             <IconButton
               borderRadius={"full"}
               icon={<FontAwesomeIcon icon={faHeart} />}
             />
-            <CartDrawer />
+          </Hide>
+          <CartDrawer />
+          <Hide below="lg">
             <Menu>
               <MenuButton>
                 <Avatar size={"sm"} icon={<FontAwesomeIcon icon={faUser} />} />
@@ -91,8 +93,8 @@ const Navbar = () => {
                 <MenuItem>Attend a Workshop</MenuItem>
               </MenuList>
             </Menu>
-          </HStack>
-        </Show>
+          </Hide>
+        </HStack>
       </HStack>
     </>
   )

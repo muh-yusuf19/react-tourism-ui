@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom"
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
-import product from "../product.json"
+import product from "../data/product.json"
 import BottomNav from "../components/BottomNav"
 
 const Explore = () => {
   return (
-    <main className="font-raleway">
+    <main>
       <section className="w-full h-full bg-cover bg-[url('/background.jpg')]">
         <Navbar />
         <div className="flex flex-col py-16">

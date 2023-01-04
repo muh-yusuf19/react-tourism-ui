@@ -19,7 +19,7 @@ import CartItem from "./CartItem"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons"
 import { useCartContext } from "../context/ctxCart"
-import product from "../product.json"
+import product from "../data/product.json"
 
 const CartDrawer = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
