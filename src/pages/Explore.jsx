@@ -3,6 +3,18 @@ import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 import product from "../data/product.json"
 import BottomNav from "../components/BottomNav"
+import {
+  Button,
+  Box,
+  Card,
+  CardBody,
+  Heading,
+  Image,
+  Text,
+  VStack,
+} from "@chakra-ui/react"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faStar } from "@fortawesome/free-solid-svg-icons"
 
 const Explore = () => {
   return (
@@ -10,7 +22,7 @@ const Explore = () => {
       <section className="w-full h-full bg-cover bg-[url('/background.jpg')]">
         <Navbar />
         <div className="flex flex-col py-16">
-          <div className="max-w-full md:max-w-xl mx-auto">
+          <div className="max-w-md px-8 md:px-0 md:max-w-xl mx-auto">
             <div className="text-center w-full space-y-6">
               <h1 className="text-4xl lg:text-6xl xl:text-8xl text-white md:text-gray-700 font-bold tracking-wide">
                 Tourism
@@ -28,29 +40,45 @@ const Explore = () => {
       <section className="py-16 px-6 w-full md:max-w-2xl lg:max-w-3xl xl:max-w-4xl md:mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {product.map((item) => (
-            <div
+            <Card
               key={item.id}
-              className="w-full relative rounded-xl overflow-hidden shadow-lg"
+              shadow={"lg"}
+              borderRadius={["lg", "xl"]}
+              overflow="hidden"
             >
-              <img
+              <Image
+                objectFit={"cover"}
+                h={["60", "52", "72"]}
                 src={`./${item.image}`}
-                alt="Slide"
-                className="object-cover object-center md:h-[300px] lg:h-[430px]"
-                width="600"
-                height="800"
               />
-              <div className="text-white absolute inset-x-0 bottom-0 p-4 space-y-4 text-center">
-                <h1 className="mb-4 md:text-2xl tracking-widest xl:text-3xl font-bold tracking-wide">
-                  {item.name}
-                </h1>
-                <Link
-                  to={`/explore/${item.id}`}
-                  className="bg-gray-700 text-sm px-4 py-2 text-white rounded-md"
-                >
-                  More
-                </Link>
-              </div>
-            </div>
+              <CardBody bg={"white"}>
+                <VStack spacing={"2"}>
+                  <Heading textAlign={"left"} size={"md"}>
+                    {item.name}
+                  </Heading>
+                  <Box display="flex" alignItems="center">
+                    {Array(5)
+                      .fill("")
+                      .map((_, i) => (
+                        <Text
+                          key={i}
+                          color={i < item.rating ? "green.400" : "gray.300"}
+                        >
+                          <FontAwesomeIcon icon={faStar} />
+                        </Text>
+                      ))}
+                    <Box pl="2" fontSize="xs">
+                      {item.reviewCount} reviews
+                    </Box>
+                  </Box>
+                  <Link to={`/explore/${item.id}`}>
+                    <Button size={["sm", "md"]} colorScheme={"green"}>
+                      More
+                    </Button>
+                  </Link>
+                </VStack>
+              </CardBody>
+            </Card>
           ))}
         </div>
       </section>

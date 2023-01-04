@@ -1,11 +1,12 @@
 import {
   Button,
+  Box,
   Card,
   CardBody,
-  Flex,
   FormControl,
   FormLabel,
   Heading,
+  Hide,
   Image,
   Input,
   useToast,
@@ -39,11 +40,11 @@ const Register = () => {
 
   return (
     <main className="font-raleway">
-      <section className="w-full bg-cover bg-[url('/background.jpg')]">
-        <div className="flex flex-col">
+      <section className="w-full h-full md:h-screen bg-cover bg-[url('/background.jpg')]">
+        <div className="h-full flex flex-col">
           <Navbar />
-          <div className="py-16 max-w-screen-xl m-auto flex flex-col md:flex-row">
-            <Flex w={["full", "50%"]} mx={"auto"} align={"center"}>
+          <div className="py-8 md:py-0 w-10/12 md:w-2/3 m-auto">
+            <Box w="full">
               <Card
                 bg={"white"}
                 direction={["column", "row"]}
@@ -51,11 +52,13 @@ const Register = () => {
                 overflow="hidden"
                 shadow={"lg"}
               >
-                <Image
-                  w={["100%", "35%"]}
-                  objectFit={"cover"}
-                  src={`./background.jpg`}
-                />
+                <Hide below="sm">
+                  <Image
+                    w={["100%", "35%"]}
+                    objectFit={"cover"}
+                    src={`./background.jpg`}
+                  />
+                </Hide>
                 <CardBody>
                   <VStack spacing={"4"} align={"start"}>
                     <Heading pb={"4"} color={"gray.700"}>
@@ -81,12 +84,12 @@ const Register = () => {
                       <Button
                         isLoading
                         loadingText="Submitting"
-                        colorScheme={"teal"}
+                        colorScheme={"green"}
                       />
                     ) : (
                       <Button
                         onClick={() => handleSubmit()}
-                        colorScheme={"teal"}
+                        colorScheme={"green"}
                       >
                         Submit
                       </Button>
@@ -94,7 +97,7 @@ const Register = () => {
                   </VStack>
                 </CardBody>
               </Card>
-            </Flex>
+            </Box>
           </div>
         </div>
       </section>

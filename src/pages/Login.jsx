@@ -1,7 +1,7 @@
 import {
   Button,
+  Box,
   Card,
-  Flex,
   Image,
   VStack,
   Heading,
@@ -11,6 +11,7 @@ import {
   CardBody,
   useToast,
   Checkbox,
+  Hide,
 } from "@chakra-ui/react"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
@@ -72,11 +73,11 @@ const Login = () => {
 
   return (
     <main className="font-raleway">
-      <section className="w-full h-full lg:h-screen bg-cover bg-[url('/background.jpg')]">
+      <section className="w-full h-full md:h-screen bg-cover bg-[url('/background.jpg')]">
         <div className="h-full flex flex-col">
           <Navbar />
-          <div className="w-full max-w-screen-xl m-auto flex flex-col md:flex-row">
-            <Flex w={["full", "50%"]} mx={"auto"} align={"center"}>
+          <div className="py-8 md:py-0 w-10/12 md:w-2/3 m-auto">
+            <Box w="full">
               <Card
                 bg={"white"}
                 direction={{ base: "column", sm: "row" }}
@@ -84,11 +85,13 @@ const Login = () => {
                 overflow="hidden"
                 shadow={"lg"}
               >
-                <Image
-                  w={["100%", "35%"]}
-                  objectFit={"cover"}
-                  src={`./background.jpg`}
-                />
+                <Hide below="sm">
+                  <Image
+                    w={["100%", "35%"]}
+                    objectFit={"cover"}
+                    src={`./background.jpg`}
+                  />
+                </Hide>
                 <CardBody>
                   <VStack spacing={"4"} align={"start"}>
                     <Heading color={"gray.700"}>Login Page</Heading>
@@ -107,12 +110,12 @@ const Login = () => {
                       <Button
                         isLoading
                         loadingText="Submitting"
-                        colorScheme={"teal"}
+                        colorScheme={"green"}
                       />
                     ) : (
                       <Button
                         onClick={() => handleSubmit()}
-                        colorScheme={"teal"}
+                        colorScheme={"green"}
                       >
                         Submit
                       </Button>
@@ -120,12 +123,12 @@ const Login = () => {
                   </VStack>
                 </CardBody>
               </Card>
-            </Flex>
+            </Box>
           </div>
         </div>
       </section>
-
       <Footer />
+
       <BottomNav />
     </main>
   )

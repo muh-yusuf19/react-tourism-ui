@@ -9,7 +9,7 @@ const LinkList = () => {
     <Flex
       direction={["column", "column", "row"]}
       gap={"6"}
-      align={["start", "start", "start", "center"]}
+      align={["start", "start", "center"]}
       justify={"space-between"}
     >
       <Link to="/">

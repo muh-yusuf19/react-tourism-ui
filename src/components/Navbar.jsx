@@ -85,11 +85,6 @@ const Navbar = () => {
           <Image objectFit={"contain"} src={`/logo.png`} h={["10", "14"]} />
         </Link>
 
-        {/* Menu */}
-        {/* <Hide above="lg">
-          <CartDrawer />
-        </Hide> */}
-
         {/* Menu Item */}
         <Show above="md">
           <LinkList />
