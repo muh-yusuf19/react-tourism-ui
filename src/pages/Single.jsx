@@ -3,7 +3,7 @@ import {
   Button,
   Card,
   CardBody,
-  Flex,
+  Heading,
   HStack,
   Text,
   VStack,
@@ -70,17 +70,17 @@ const Single = () => {
     <main className="font-poppins">
       <section className="w-full h-full bg-cover bg-[url('/background.jpg')]">
         <Navbar />
-        <div className="flex flex-col">
+        <div className="flex flex-col py-16">
           <div className="max-w-full md:max-w-xl mx-auto">
             <div className="text-center w-full space-y-6">
-              <h1 className="text-4xl lg:text-6xl xl:text-8xl text-white md:text-gray-700 font-bold tracking-wide">
+              <Heading textAlign="center" color="gray.700" size="4xl">
                 Tourism
-              </h1>
-              <p className="text-sm md:text-base lg:text-lg text-white md:text-gray-700 text-justify">
+              </Heading>
+              <Text color="gray.700">
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                 Provident fuga ipsa, quisquam asperiores magni consectetur
                 consequuntur hic.
-              </p>
+              </Text>
             </div>
           </div>
         </div>
@@ -90,6 +90,7 @@ const Single = () => {
         <Card
           h={["full", "380px", "450px", "500px"]}
           direction={["column", "row"]}
+          shadow="lg"
         >
           <VStack w={["100%", "45%", "50%"]}>
             <Gallery />

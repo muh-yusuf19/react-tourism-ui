@@ -24,14 +24,14 @@ const Explore = () => {
         <div className="flex flex-col py-16">
           <div className="max-w-md px-8 md:px-0 md:max-w-xl mx-auto">
             <div className="text-center w-full space-y-6">
-              <h1 className="text-4xl lg:text-6xl xl:text-8xl text-white md:text-gray-700 font-bold tracking-wide">
+              <Heading textAlign="center" color="gray.700" size="4xl">
                 Tourism
-              </h1>
-              <p className="text-sm md:text-base lg:text-lg text-white md:text-gray-700 text-justify">
+              </Heading>
+              <Text color="gray.700">
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                 Provident fuga ipsa, quisquam asperiores magni consectetur
                 consequuntur hic.
-              </p>
+              </Text>
             </div>
           </div>
         </div>

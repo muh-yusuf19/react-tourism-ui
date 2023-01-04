@@ -18,11 +18,14 @@
     "@fortawesome/free-regular-svg-icons": "^6.2.0",
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@hookform/resolvers": "^2.9.10",
     "framer-motion": "^7.10.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.41.5",
     "react-router-dom": "^6.4.2",
-    "swiper": "^8.4.3"
+    "swiper": "^8.4.3",
+    "zod": "^3.20.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.17",

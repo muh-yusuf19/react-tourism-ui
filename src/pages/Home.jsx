@@ -1,6 +1,6 @@
-import { Button, Heading, Text, VStack } from "@chakra-ui/react"
+import { Box, Button, Heading, Text, VStack } from "@chakra-ui/react"
 import React from "react"
-import { Link, useLocation } from "react-router-dom"
+import { Link } from "react-router-dom"
 import BottomNav from "../components/BottomNav"
 import Feature from "../components/Feature"
 import Footer from "../components/Footer"
@@ -9,12 +9,15 @@ import Testimoni from "../components/Testimoni"
 import TourSlide from "../components/TourSlide"
 
 const Home = () => {
-  const location = useLocation()
-
   return (
     <main>
-      <section className="w-full h-full lg:h-screen bg-cover bg-[url('/background.jpg')]">
-        <div className="h-full flex flex-col">
+      <section className="relative w-full h-full lg:h-screen">
+        <img
+          src="/background.jpg"
+          alt="Background"
+          className="object-cover w-full h-screen"
+        />
+        <div className="absolute inset-0 flex flex-col">
           <Navbar />
           <div className="w-full max-w-screen-xl md:m-auto flex flex-col md:flex-row gap-6">
             <VStack

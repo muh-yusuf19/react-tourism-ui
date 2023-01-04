@@ -12,6 +12,7 @@ import {
   useToast,
   Checkbox,
   Hide,
+  FormErrorMessage,
 } from "@chakra-ui/react"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
@@ -19,9 +20,27 @@ import BottomNav from "../components/BottomNav"
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 import { useAuth } from "../context/authCtx"
+import { z } from "zod"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+
+const LoginSchema = z.object({
+  email: z.string().email(),
+  password: z.string().min(8),
+})
 
 const Login = () => {
   const [loading, setLoading] = useState()
+
+  // React-hook-form
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isLoading },
+  } = useForm({
+    resolver: zodResolver(LoginSchema),
+    mode: "onBlur",
+  })
 
   // Chakra UI toast
   const toast = useToast()
@@ -37,7 +56,8 @@ const Login = () => {
     setPersist((prev) => !prev)
   }
 
-  const handleSubmit = async () => {
+  // handleSubmit
+  const onSubmit = async () => {
     try {
       setLoading((prev) => !prev)
 
@@ -95,31 +115,36 @@ const Login = () => {
                 <CardBody>
                   <VStack spacing={"4"} align={"start"}>
                     <Heading color={"gray.700"}>Login Page</Heading>
-                    <FormControl pt={"4"}>
-                      <FormLabel>Email</FormLabel>
-                      <Input type="email" />
-                    </FormControl>
-                    <FormControl pt={"4"}>
-                      <FormLabel>Password</FormLabel>
-                      <Input type="password" />
-                    </FormControl>
-                    <Checkbox onChange={() => tooglePersist()}>
-                      Remember me?
-                    </Checkbox>
-                    {loading ? (
-                      <Button
-                        isLoading
-                        loadingText="Submitting"
-                        colorScheme={"green"}
-                      />
-                    ) : (
-                      <Button
-                        onClick={() => handleSubmit()}
-                        colorScheme={"green"}
-                      >
-                        Submit
-                      </Button>
-                    )}
+                    <form className="w-full space-y-4">
+                      <FormControl isInvalid={!!errors?.email?.message}>
+                        <FormLabel>Email</FormLabel>
+                        <Input type="email" />
+                        <FormErrorMessage>
+                          {errors?.email?.message}
+                        </FormErrorMessage>
+                      </FormControl>
+                      <FormControl isInvalid={!!errors?.password?.message}>
+                        <FormLabel>Password</FormLabel>
+                        <Input type="password" />
+                      </FormControl>
+                      <Checkbox onChange={() => tooglePersist()}>
+                        Remember me?
+                      </Checkbox>
+                      {loading ? (
+                        <Button
+                          isLoading
+                          loadingText="Submitting"
+                          colorScheme={"green"}
+                        />
+                      ) : (
+                        <Button
+                          onClick={handleSubmit(onSubmit)}
+                          colorScheme={"green"}
+                        >
+                          Submit
+                        </Button>
+                      )}
+                    </form>
                   </VStack>
                 </CardBody>
               </Card>
