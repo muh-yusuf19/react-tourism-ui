@@ -22,6 +22,7 @@ import CartDrawer from "./CartDrawer"
 import LinkList from "./LinkList"
 import MobileMenu from "./MobileMenu"
 import { useAuth } from "../context/authCtx"
+import ImgLogo from "../images/logo.png"
 
 const Navbar = () => {
   const { auth, setAuth } = useAuth()
@@ -82,7 +83,7 @@ const Navbar = () => {
 
         {/* Logo */}
         <Link to="/">
-          <Image objectFit={"contain"} src={`/logo.png`} h={["10", "14"]} />
+          <Image objectFit={"contain"} src={ImgLogo} h={["10", "14"]} alt="logo" />
         </Link>
 
         {/* Menu Item */}
@@ -96,6 +97,7 @@ const Navbar = () => {
             <IconButton
               borderRadius={"full"}
               icon={<FontAwesomeIcon icon={faHeart} />}
+              alt="Cart Button"
             />
           </Hide>
           <CartDrawer />

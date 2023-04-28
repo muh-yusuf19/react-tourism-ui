@@ -4,7 +4,6 @@ import {
   Card,
   CardBody,
   Heading,
-  HStack,
   Image,
   VStack,
   Text,

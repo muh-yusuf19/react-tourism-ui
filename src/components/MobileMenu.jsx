@@ -22,6 +22,7 @@ const MobileMenu = () => {
   return (
     <>
       <IconButton
+        alt="Menu Button"
         ref={btnRef}
         onClick={onOpen}
         icon={<FontAwesomeIcon icon={faBars} />}

@@ -1,4 +1,4 @@
-import { HStack, VStack, Text, Flex, Hide, Show } from "@chakra-ui/react"
+import { HStack, VStack, Text, Flex, Show } from "@chakra-ui/react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   faHouse,

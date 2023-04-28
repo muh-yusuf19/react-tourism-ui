@@ -1,20 +1,27 @@
-import { Box, Button, Heading, Text, VStack } from "@chakra-ui/react"
 import React from "react"
-import { Link } from "react-router-dom"
-import BottomNav from "../components/BottomNav"
-import Feature from "../components/Feature"
-import Footer from "../components/Footer"
+// import BottomNav from "../components/BottomNav"
+// import Feature from "../components/Feature"
+// import Footer from "../components/Footer"
+// import Testimoni from "../components/Testimoni"
+// import TourSlide from "../components/TourSlide"
 import Navbar from "../components/Navbar"
-import Testimoni from "../components/Testimoni"
-import TourSlide from "../components/TourSlide"
+import { VStack, Heading, Text, Button, Link } from "@chakra-ui/react"
+import ImgBackground from "../images/background.jpg"
+const Testimoni = React.lazy(() => import("../components/Testimoni"))
+const Feature = React.lazy(() => import("../components/Feature"))
+const TourSlide = React.lazy(() => import("../components/TourSlide"))
+const BottomNav = React.lazy(() => import("../components/BottomNav"))
+const Footer = React.lazy(() => import("../components/Footer"))
 
 const Home = () => {
   return (
     <main>
       <section className="relative w-full h-full lg:h-screen">
         <img
-          src="/background.jpg"
+          src={ImgBackground}
           alt="Background"
+          width="700"
+          height="465"
           className="object-cover w-full h-screen"
         />
         <div className="absolute inset-0 flex flex-col">
@@ -42,15 +49,19 @@ const Home = () => {
             </VStack>
 
             <div className="z-0 w-full md:w-1/2 py-4 md:py-6">
-              <TourSlide />
+              <React.Suspense fallback={<p>Loading...</p>}>
+                <TourSlide />
+              </React.Suspense>
             </div>
           </div>
         </div>
       </section>
-      <Feature />
-      <Testimoni />
-      <Footer />
-      <BottomNav />
+      <React.Suspense fallback={<p>Loading...</p>}>
+        <Feature />
+        <Testimoni />
+        <Footer />
+        <BottomNav />
+      </React.Suspense>
     </main>
   )
 }
