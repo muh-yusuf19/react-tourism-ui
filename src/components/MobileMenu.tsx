@@ -14,15 +14,16 @@ import { faBars } from "@fortawesome/free-solid-svg-icons"
 import React from "react"
 import { Link } from "react-router-dom"
 import LinkList from "./LinkList"
+import ImgLogo from "../images/Logo.png"
 
 const MobileMenu = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const btnRef = React.useRef()
+  const btnRef = React.useRef<HTMLButtonElement>(null)
 
   return (
     <>
       <IconButton
-        alt="Menu Button"
+        aria-label="Nav Button"
         ref={btnRef}
         onClick={onOpen}
         icon={<FontAwesomeIcon icon={faBars} />}
@@ -33,7 +34,6 @@ const MobileMenu = () => {
         onClose={onClose}
         finalFocusRef={btnRef}
         size={["xs"]}
-        scrollBehavior={"inside"}
       >
         <DrawerOverlay />
         <DrawerContent>
@@ -42,7 +42,7 @@ const MobileMenu = () => {
             <Link to="/">
               <Image
                 objectFit={"contain"}
-                src={`./logo.png`}
+                src={ImgLogo}
                 h={["10", "14"]}
               />
             </Link>

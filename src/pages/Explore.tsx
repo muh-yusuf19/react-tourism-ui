@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom"
-import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 import product from "../data/product.json"
-import BottomNav from "../components/BottomNav"
 import {
   Button,
   Box,
@@ -15,11 +13,14 @@ import {
 } from "@chakra-ui/react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faStar } from "@fortawesome/free-solid-svg-icons"
+import { Suspense, lazy } from "react"
+
+const BottomNav = lazy(() => import('../components/BottomNav'))
+const Footer = lazy(() => import('../components/Footer'))
 
 const Explore = () => {
   return (
     <main>
-      <section className="w-full h-full bg-cover bg-[url('/background.jpg')]">
         <Navbar />
         <div className="flex flex-col py-16">
           <div className="max-w-md px-8 md:px-0 md:max-w-xl mx-auto">
@@ -35,7 +36,6 @@ const Explore = () => {
             </div>
           </div>
         </div>
-      </section>
 
       <section className="py-16 px-6 w-full md:max-w-2xl lg:max-w-3xl xl:max-w-4xl md:mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -82,9 +82,10 @@ const Explore = () => {
           ))}
         </div>
       </section>
-
-      <Footer />
-      <BottomNav />
+      <Suspense fallback={<p>Loading...</p>}>
+        <Footer />
+        <BottomNav />
+      </Suspense>                  
     </main>
   )
 }

@@ -1,15 +1,12 @@
 import React from "react"
-// import BottomNav from "../components/BottomNav"
-// import Feature from "../components/Feature"
-// import Footer from "../components/Footer"
-// import Testimoni from "../components/Testimoni"
-// import TourSlide from "../components/TourSlide"
 import Navbar from "../components/Navbar"
-import { VStack, Heading, Text, Button, Link } from "@chakra-ui/react"
+import { VStack, Heading, Text, Button } from "@chakra-ui/react"
 import ImgBackground from "../images/background.jpg"
+import { Link } from "react-router-dom"
+
+const TourSlide = React.lazy(() => import("../components/TourSlide"))
 const Testimoni = React.lazy(() => import("../components/Testimoni"))
 const Feature = React.lazy(() => import("../components/Feature"))
-const TourSlide = React.lazy(() => import("../components/TourSlide"))
 const BottomNav = React.lazy(() => import("../components/BottomNav"))
 const Footer = React.lazy(() => import("../components/Footer"))
 

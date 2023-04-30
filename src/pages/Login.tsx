@@ -14,15 +14,16 @@ import {
   Hide,
   FormErrorMessage,
 } from "@chakra-ui/react"
-import { useState } from "react"
+import { Suspense, lazy, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import BottomNav from "../components/BottomNav"
-import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 import { useAuth } from "../context/authCtx"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
+
+const Footer = lazy(() => import("../components/Footer"))
+const BottomNav = lazy(() => import("../components/BottomNav"))
 
 const LoginSchema = z.object({
   email: z.string().email(),
@@ -30,11 +31,10 @@ const LoginSchema = z.object({
 })
 
 const Login = () => {
-  const [loading, setLoading] = useState()
+  const [loading, setLoading] = useState<boolean>()
 
   // React-hook-form
   const {
-    register,
     handleSubmit,
     formState: { errors, isLoading },
   } = useForm({
@@ -49,7 +49,7 @@ const Login = () => {
   const navigate = useNavigate()
 
   // Auth hook
-  const { setAuth, persist, setPersist } = useAuth()
+  const { setAuth, setPersist } = useAuth()
 
   // Toggle remember me
   const tooglePersist = () => {
@@ -65,8 +65,8 @@ const Login = () => {
         // Call API for login
         // Use auth hook to save auth information
         setAuth({
-          email: "testuser@mail.com",
-          accessToken: "SomeLongHashedToken",
+          token: "testuser@mail.com",
+          refreshToken: "SomeLongHashedToken",
         })
         setLoading((prev) => !prev)
         toast({
@@ -93,7 +93,7 @@ const Login = () => {
 
   return (
     <main className="font-raleway">
-      <section className="w-full h-full md:h-screen bg-cover bg-[url('/background.jpg')]">
+      <section className="w-full h-full md:h-screen bg-cover">
         <div className="h-full flex flex-col">
           <Navbar />
           <div className="py-8 md:py-0 w-10/12 md:w-2/3 m-auto">
@@ -120,7 +120,7 @@ const Login = () => {
                         <FormLabel>Email</FormLabel>
                         <Input type="email" />
                         <FormErrorMessage>
-                          {errors?.email?.message}
+                          {!!errors?.email?.message}
                         </FormErrorMessage>
                       </FormControl>
                       <FormControl isInvalid={!!errors?.password?.message}>
@@ -152,9 +152,10 @@ const Login = () => {
           </div>
         </div>
       </section>
-      <Footer />
-
-      <BottomNav />
+      <Suspense fallback={<p>Loading...</p>}>
+        <Footer />
+        <BottomNav />
+      </Suspense>
     </main>
   )
 }

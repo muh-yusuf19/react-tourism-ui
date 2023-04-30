@@ -7,13 +7,14 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faMap, faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons"
 import { Image } from "@chakra-ui/react"
+import ImgLogo from "../images/Logo.png"
 
 const Footer = () => {
   return (
     <footer className="bg-emerald-600 text-white">
       <div className="max-w-full md:max-w-3xl lg:max-w-5xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="text-justify">
-          <Image objectFit={"contain"} src={`/logo.png`} h={"14"} />
+          <Image objectFit={"contain"} src={ImgLogo} h={"14"} />
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
             cupiditate rerum harum facilis? Doloremque facilis odit beatae, vero

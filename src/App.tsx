@@ -5,13 +5,6 @@ import { ChakraProvider } from "@chakra-ui/react"
 import { Route, Routes } from "react-router-dom"
 import { CtxCartProvider } from "./context/ctxCart"
 import { AuthProvider } from "./context/authCtx"
-// import Loading from "./components/Loading"
-// import Home from "./pages/Home"
-// import Login from "./pages/Login"
-// import Register from "./pages/Register"
-// import Explore from "./pages/Explore"
-// import Single from "./pages/Single"
-
 
 const Home = lazy(() => import("./pages/Home"))
 const Login = lazy(() => import("./pages/Login"))

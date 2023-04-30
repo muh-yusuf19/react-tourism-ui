@@ -23,12 +23,12 @@ import product from "../data/product.json"
 
 const CartDrawer = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const btnRef = React.useRef()
+  const btnRef = React.useRef<HTMLButtonElement>(null)
   const { cartItem } = useCartContext()
 
   return (
     <>
-      <IconButton borderRadius={"full"}>
+      <IconButton aria-label="Cart" borderRadius={"full"}>
         <Avatar
           ref={btnRef}
           onClick={onOpen}
@@ -48,7 +48,6 @@ const CartDrawer = () => {
         onClose={onClose}
         finalFocusRef={btnRef}
         size={["xs", "md"]}
-        scrollBehavior={"inside"}
       >
         <DrawerOverlay />
         <DrawerContent>
@@ -72,8 +71,7 @@ const CartDrawer = () => {
 
           <DrawerFooter>
             <Button variant="outline" mr={3} onClick={onClose}>
-              {" "}
-              Cancel{" "}
+              Cancel
             </Button>
             <Button colorScheme="blue">Save</Button>
           </DrawerFooter>

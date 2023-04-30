@@ -1,20 +1,25 @@
-import { useState } from "react"
+import { ReactNode, useState } from "react"
 import { createContext, useContext } from "react"
+import { Cart, CartContextType } from "../@types/cart"
 
-const CtxCartContext = createContext({})
+type CtxCartProvider = {
+  children: ReactNode
+}
+
+const CtxCartContext = createContext({} as CartContextType)
 
 export function useCartContext() {
   return useContext(CtxCartContext)
 }
 
-export function CtxCartProvider({ children }) {
-  const [cartItem, setCartItem] = useState([])
+export function CtxCartProvider({ children }: CtxCartProvider) {
+  const [cartItem, setCartItem] = useState<Cart[]>([])
 
-  const getItemQuantity = (id) => {
+  const getItemQuantity = (id: number) => {
     return cartItem.find((item) => item.id == id)?.quantity || 0
   }
 
-  const addToCart = (id, qyt) => {
+  const addToCart = (id:number, qyt: number) => {
     const exist = cartItem.find((item) => item.id == id)
     let newCartItem = []
     if (exist) {
@@ -28,7 +33,7 @@ export function CtxCartProvider({ children }) {
     }
   }
 
-  const increaseItemQuantity = (id) => {
+  const increaseItemQuantity = (id: number) => {
     const exist = cartItem.find((item) => item.id == id)
     let newCartItem = []
     if (exist) {
@@ -42,24 +47,26 @@ export function CtxCartProvider({ children }) {
     }
   }
 
-  const removeItem = (id) => {
+  const removeItem = (id: number) => {
     setCartItem((currItem) => {
       return currItem.filter((item) => item.id !== id)
     })
   }
 
-  const decreseItemQuantity = (id) => {
-    const exist = cartItem.find((item) => item.id == id)
-    let newCartItem = []
-    if (exist.quantity == 1) {
-      newCartItem = cartItem.filter((item) => item.id !== id)
-      setCartItem(newCartItem)
-    } else {
-      newCartItem = cartItem.map((item) =>
-        item.id == id ? { ...exist, quantity: exist.quantity - 1 } : item
-      )
-      setCartItem(newCartItem)
-    }
+  const decreaseItemQuantity = (id: number) => {
+    setCartItem(currItems => {
+      if(currItems.find(item => item.id == id) == null){
+        return [...currItems, {id, quantity: 1}]
+      } else {
+        return currItems.map(item => {
+          if (item.id == id) {
+            return {...item, quantity: item.quantity +1}
+          } else {
+            return item
+          }
+        })
+      }
+    })
   }
 
   const cartQuantity = cartItem.reduce(
@@ -69,11 +76,12 @@ export function CtxCartProvider({ children }) {
 
   return (
     <CtxCartContext.Provider
-      value={{
+      value = {{
+        cartQuantity,
         getItemQuantity,
         increaseItemQuantity,
         removeItem,
-        decreseItemQuantity,
+        decreaseItemQuantity,
         addToCart,
         cartItem,
       }}

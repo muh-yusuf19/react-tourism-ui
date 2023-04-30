@@ -16,13 +16,12 @@ import {
 } from "@chakra-ui/react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUser, faHeart } from "@fortawesome/free-solid-svg-icons"
-import React from "react"
 import { Link, useNavigate } from "react-router-dom"
 import CartDrawer from "./CartDrawer"
 import LinkList from "./LinkList"
 import MobileMenu from "./MobileMenu"
 import { useAuth } from "../context/authCtx"
-import ImgLogo from "../images/logo.png"
+import ImgLogo from "../images/Logo.png"
 
 const Navbar = () => {
   const { auth, setAuth } = useAuth()
@@ -35,7 +34,7 @@ const Navbar = () => {
 
   // Logout function
   const logout = () => {
-    setAuth({})
+    setAuth({token: "", refreshToken: ""})
     navigate("/")
     toast({
       title: "Logout...",
@@ -95,9 +94,9 @@ const Navbar = () => {
         <HStack spacing={"4"}>
           <Hide below="lg">
             <IconButton
+              aria-label="Liked"
               borderRadius={"full"}
               icon={<FontAwesomeIcon icon={faHeart} />}
-              alt="Cart Button"
             />
           </Hide>
           <CartDrawer />
@@ -106,7 +105,7 @@ const Navbar = () => {
               <MenuButton>
                 <Avatar size={"sm"} icon={<FontAwesomeIcon icon={faUser} />} />
               </MenuButton>
-              {auth?.accessToken && (
+              {auth?.token && (
                 <MenuList px={"2"}>
                   <MenuItem>Download</MenuItem>
                   <MenuItem>Mark as Draft</MenuItem>

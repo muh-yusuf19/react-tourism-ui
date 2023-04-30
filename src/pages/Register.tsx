@@ -13,14 +13,14 @@ import {
   VStack,
   FormErrorMessage,
 } from "@chakra-ui/react"
-import React from "react"
-import { useState } from "react"
-import BottomNav from "../components/BottomNav"
-import Footer from "../components/Footer"
+import { Suspense, lazy, useState } from "react"
 import Navbar from "../components/Navbar"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
+
+const Footer = lazy(() => import("../components/Footer"))
+const BottomNav = lazy(() => import("../components/BottomNav"))
 
 const registerSchema = z.object({
   firstName: z.string().min(3),
@@ -46,25 +46,35 @@ const Register = () => {
   })
 
   // handleSubmit
-  const onSubmit = (data) => {
+  const onSubmit = async () => {
     setLoading((prev) => !prev)
-    console.log(data)
-    setTimeout(() => {
-      setLoading((prev) => !prev)
+    try {
+      setTimeout(() => {
+        setLoading((prev) => !prev)
+        toast({
+          title: "Registration Successfully",
+          description: "We've created your account for you.",
+          status: "success",
+          position: "bottom-right",
+          duration: 5000,
+          isClosable: true,
+        })
+      }, 5000)
+    }catch (err: any) {
       toast({
-        title: "Registration Successfully",
-        description: "We've created your account for you.",
-        status: "success",
+        title: "Registration Failed",
+        description: err,
+        status: "error",
         position: "bottom-right",
         duration: 5000,
         isClosable: true,
       })
-    }, 5000)
+    }
   }
 
   return (
     <main className="font-raleway">
-      <section className="w-full lg:h-full md:h-screen bg-cover bg-[url('/background.jpg')]">
+      <section className="w-full lg:h-full md:h-screen bg-cover">
         <div className="h-full flex flex-col">
           <Navbar />
           <div className="py-8 md:py-0 lg:py-6 w-10/12 md:w-2/3 m-auto">
@@ -96,7 +106,7 @@ const Register = () => {
                           name="firstName"
                         />
                         <FormErrorMessage>
-                          {errors?.firstName?.message}
+                          {!!errors?.firstName?.message}
                         </FormErrorMessage>
                       </FormControl>
                       <FormControl isInvalid={!!errors?.lastName?.message}>
@@ -107,7 +117,7 @@ const Register = () => {
                           name="lastName"
                         />
                         <FormErrorMessage>
-                          {errors?.lastName?.message}
+                          {!!errors?.lastName?.message}
                         </FormErrorMessage>
                       </FormControl>
                       <FormControl isInvalid={!!errors?.email?.message}>
@@ -118,7 +128,7 @@ const Register = () => {
                           name="email"
                         />
                         <FormErrorMessage>
-                          {errors?.email?.message}
+                          {!!errors?.email?.message}
                         </FormErrorMessage>
                       </FormControl>
                       <FormControl isInvalid={!!errors?.password?.message}>
@@ -129,7 +139,7 @@ const Register = () => {
                           name="password"
                         />
                         <FormErrorMessage>
-                          {errors?.password?.message}
+                          {!!errors?.password?.message}
                         </FormErrorMessage>
                       </FormControl>
                       {loading ? (
@@ -154,9 +164,10 @@ const Register = () => {
           </div>
         </div>
       </section>
-
-      <Footer />
-      <BottomNav />
+      <Suspense fallback={<p>Loading...</p>}>
+        <Footer />
+        <BottomNav />
+      </Suspense>
     </main>
   )
 }

@@ -11,7 +11,6 @@ import {
   IconButton,
   Badge,
 } from "@chakra-ui/react"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   faPlus,
   faMinus,
@@ -19,24 +18,27 @@ import {
   faShareNodes,
   faMapLocationDot,
 } from "@fortawesome/free-solid-svg-icons"
-import { useState } from "react"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { Suspense, lazy, useState } from "react"
 import { useParams } from "react-router-dom"
-import Footer from "../components/Footer"
-import Gallery from "../components/Gallery"
 import Navbar from "../components/Navbar"
 import { useCartContext } from "../context/ctxCart"
 import product from "../data/product.json"
-import BottomNav from "../components/BottomNav"
 import { faHeart } from "@fortawesome/free-regular-svg-icons"
+
+const Gallery = lazy(() => import("../components/Gallery"))
+const Footer = lazy(() => import("../components/Footer"))
+const BottomNav = lazy(() => import("../components/BottomNav"))
 
 const Single = () => {
   const { id } = useParams()
   const { addToCart } = useCartContext()
-  const [qyt, setQyt] = useState(1)
+  const [qyt, setQyt] = useState<number>(1)
   const [loading, setLoading] = useState(false)
   const toast = useToast()
 
-  const currProduct = product.find((item) => item.id == id)
+  const currProduct = product.find((item) => item.id == Number(id))
+  // const [currProduct, setCurrProduct] = useState<Product >(product.find((item) => item.id == Number(id)))
 
   const handleIncrease = () => {
     setQyt((prev) => prev + 1)
@@ -53,7 +55,7 @@ const Single = () => {
   const handleAdd = () => {
     setLoading((prev) => !prev)
     setTimeout(() => {
-      addToCart(currProduct.id, qyt)
+      addToCart(Number(currProduct?.id), qyt)
       toast({
         title: "Add to Cart",
         description: "Item sucsessfully added",
@@ -68,7 +70,7 @@ const Single = () => {
 
   return (
     <main className="font-poppins">
-      <section className="w-full h-full bg-cover bg-[url('/background.jpg')]">
+      <section className="w-full h-full bg-cover">
         <Navbar />
         <div className="flex flex-col py-16">
           <div className="max-w-full md:max-w-xl mx-auto">
@@ -93,14 +95,16 @@ const Single = () => {
           shadow="lg"
         >
           <VStack w={["100%", "45%", "50%"]}>
-            <Gallery />
+            <Suspense fallback={<p>Loading...</p>}>
+              <Gallery />
+            </Suspense>
           </VStack>
           <CardBody overflow="auto">
             <VStack w="full" align={"start"} justify={"space-between"}>
               {/* Title review and badge */}
               <VStack spacing="2" pt="2" align="start">
                 <h1 className="text-2xl md:text-3xl font-bold tracking-wide">
-                  {currProduct.name}
+                  {currProduct?.name}
                 </h1>
                 {/* Badge */}
                 <Box display="flex" alignItems="baseline">
@@ -120,14 +124,14 @@ const Single = () => {
                       <Text
                         key={i}
                         color={
-                          i < currProduct.rating ? "green.400" : "gray.300"
+                          i < Number(currProduct?.rating) ? "green.400" : "gray.300"
                         }
                       >
                         <FontAwesomeIcon icon={faStar} />
                       </Text>
                     ))}
                   <Box as="span" ml="2" color="gray.600" fontSize="sm">
-                    {currProduct.reviewCount} reviews
+                    {currProduct?.reviewCount} reviews
                   </Box>
                 </Box>
               </VStack>
@@ -136,19 +140,21 @@ const Single = () => {
               <VStack w="full" spacing="2" pt="10" align="start">
                 {/* Price */}
                 <h1 className="text-xl font-bold tracking-wide">
-                  Rp. {currProduct.price}
+                  Rp. {currProduct?.price}
                 </h1>
 
                 {/* quantity add */}
                 <HStack gap={["2", "4"]} w="full">
                   {/* Quantity */}
                   <IconButton
+                    aria-label="Decrease Btn"
                     size={"sm"}
                     onClick={() => handleDecrease()}
                     icon={<FontAwesomeIcon icon={faMinus} />}
                   />
                   <Text px="2">{qyt}</Text>
                   <IconButton
+                    aria-label="Increase Btn"
                     size={"sm"}
                     onClick={() => handleIncrease()}
                     icon={<FontAwesomeIcon icon={faPlus} />}
@@ -174,14 +180,17 @@ const Single = () => {
                 </HStack>
                 <HStack>
                   <IconButton
+                    aria-label="Like"
                     size="md"
                     icon={<FontAwesomeIcon icon={faHeart} />}
                   />
                   <IconButton
+                    aria-label="Share"
                     size="md"
                     icon={<FontAwesomeIcon icon={faShareNodes} />}
                   />
                   <IconButton
+                    aria-label="Location"
                     size="md"
                     icon={<FontAwesomeIcon icon={faMapLocationDot} />}
                   />
@@ -192,16 +201,17 @@ const Single = () => {
               <VStack pt="10" align="start">
                 <h1 className="font-bold text-xl tracking-wide">Description</h1>
                 <Text align={"justify"} overflow="auto">
-                  {currProduct.description}
+                  {currProduct?.description}
                 </Text>
               </VStack>
             </VStack>
           </CardBody>
         </Card>
       </section>
-
-      <Footer />
-      <BottomNav />
+      <Suspense fallback={<p>Loading...</p>}>
+        <Footer />
+        <BottomNav />
+      </Suspense>
     </main>
   )
 }
