@@ -18,9 +18,17 @@ import Navbar from "../components/Navbar"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
+import ImgBackground from "../images/background.jpg"
 
 const Footer = lazy(() => import("../components/Footer"))
 const BottomNav = lazy(() => import("../components/BottomNav"))
+
+type UserSubmitForm = {
+  firstName: string
+  lastName: string
+  email: string
+  password: string
+}
 
 const registerSchema = z.object({
   firstName: z.string().min(3),
@@ -31,8 +39,6 @@ const registerSchema = z.object({
 
 const Register = () => {
   const [loading, setLoading] = useState(false)
-
-  // Chakra UI toast
   const toast = useToast()
 
   // React-hook-form
@@ -40,13 +46,19 @@ const Register = () => {
     register,
     handleSubmit,
     formState: { errors, isLoading },
-  } = useForm({
+  } = useForm<UserSubmitForm>({
     resolver: zodResolver(registerSchema),
     mode: "onBlur",
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+    },
   })
 
   // handleSubmit
-  const onSubmit = async () => {
+  const onSubmit = async (data: UserSubmitForm) => {
     setLoading((prev) => !prev)
     try {
       setTimeout(() => {
@@ -60,7 +72,7 @@ const Register = () => {
           isClosable: true,
         })
       }, 5000)
-    }catch (err: any) {
+    } catch (err: any) {
       toast({
         title: "Registration Failed",
         description: err,
@@ -73,7 +85,7 @@ const Register = () => {
   }
 
   return (
-    <main className="font-raleway">
+    <main>
       <section className="w-full lg:h-full md:h-screen bg-cover">
         <div className="h-full flex flex-col">
           <Navbar />
@@ -90,7 +102,7 @@ const Register = () => {
                   <Image
                     w={["100%", "35%"]}
                     objectFit={"cover"}
-                    src={`./background.jpg`}
+                    src={ImgBackground}
                   />
                 </Hide>
                 <CardBody>
@@ -106,7 +118,7 @@ const Register = () => {
                           name="firstName"
                         />
                         <FormErrorMessage>
-                          {!!errors?.firstName?.message}
+                          {errors?.firstName?.message}
                         </FormErrorMessage>
                       </FormControl>
                       <FormControl isInvalid={!!errors?.lastName?.message}>
@@ -117,7 +129,7 @@ const Register = () => {
                           name="lastName"
                         />
                         <FormErrorMessage>
-                          {!!errors?.lastName?.message}
+                          {errors?.lastName?.message}
                         </FormErrorMessage>
                       </FormControl>
                       <FormControl isInvalid={!!errors?.email?.message}>
@@ -128,7 +140,7 @@ const Register = () => {
                           name="email"
                         />
                         <FormErrorMessage>
-                          {!!errors?.email?.message}
+                          {errors?.email?.message}
                         </FormErrorMessage>
                       </FormControl>
                       <FormControl isInvalid={!!errors?.password?.message}>
@@ -139,7 +151,7 @@ const Register = () => {
                           name="password"
                         />
                         <FormErrorMessage>
-                          {!!errors?.password?.message}
+                          {errors?.password?.message}
                         </FormErrorMessage>
                       </FormControl>
                       {loading ? (

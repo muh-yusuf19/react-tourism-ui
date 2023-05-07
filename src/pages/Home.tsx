@@ -13,15 +13,8 @@ const Footer = React.lazy(() => import("../components/Footer"))
 const Home = () => {
   return (
     <main>
-      <section className="relative w-full h-full lg:h-screen">
-        <img
-          src={ImgBackground}
-          alt="Background"
-          width="700"
-          height="465"
-          className="object-cover w-full h-screen"
-        />
-        <div className="absolute inset-0 flex flex-col">
+      <section className="relative w-full h-full lg:h-screen bg-[url('/background.jpg')] bg-no-repeat bg-center bg-cover">
+        <div className="lg:absolute lg:inset-0 lg:flex lg:flex-col">
           <Navbar />
           <div className="w-full max-w-screen-xl md:m-auto flex flex-col md:flex-row gap-6">
             <VStack

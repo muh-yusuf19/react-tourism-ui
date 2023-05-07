@@ -21,6 +21,7 @@ import { useAuth } from "../context/authCtx"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
+import ImgBackground from "../images/background.jpg"
 
 const Footer = lazy(() => import("../components/Footer"))
 const BottomNav = lazy(() => import("../components/BottomNav"))
@@ -30,26 +31,30 @@ const LoginSchema = z.object({
   password: z.string().min(8),
 })
 
+type UserLoginForm = {
+  email: string
+  password: string
+}
+
 const Login = () => {
   const [loading, setLoading] = useState<boolean>()
+  const toast = useToast()
+  const navigate = useNavigate()
+  const { setAuth, setPersist } = useAuth()
 
   // React-hook-form
   const {
     handleSubmit,
+    register,
     formState: { errors, isLoading },
-  } = useForm({
+  } = useForm<UserLoginForm>({
     resolver: zodResolver(LoginSchema),
     mode: "onBlur",
+    defaultValues: {
+      email: "",
+      password: "",
+    },
   })
-
-  // Chakra UI toast
-  const toast = useToast()
-
-  // React router
-  const navigate = useNavigate()
-
-  // Auth hook
-  const { setAuth, setPersist } = useAuth()
 
   // Toggle remember me
   const tooglePersist = () => {
@@ -57,7 +62,7 @@ const Login = () => {
   }
 
   // handleSubmit
-  const onSubmit = async () => {
+  const onSubmit = async (data: UserLoginForm) => {
     try {
       setLoading((prev) => !prev)
 
@@ -65,8 +70,8 @@ const Login = () => {
         // Call API for login
         // Use auth hook to save auth information
         setAuth({
-          token: "testuser@mail.com",
-          refreshToken: "SomeLongHashedToken",
+          token: data.email,
+          refreshToken: data.password,
         })
         setLoading((prev) => !prev)
         toast({
@@ -92,7 +97,7 @@ const Login = () => {
   }
 
   return (
-    <main className="font-raleway">
+    <main>
       <section className="w-full h-full md:h-screen bg-cover">
         <div className="h-full flex flex-col">
           <Navbar />
@@ -109,7 +114,7 @@ const Login = () => {
                   <Image
                     w={["100%", "35%"]}
                     objectFit={"cover"}
-                    src={`./background.jpg`}
+                    src={ImgBackground}
                   />
                 </Hide>
                 <CardBody>
@@ -118,32 +123,37 @@ const Login = () => {
                     <form className="w-full space-y-4">
                       <FormControl isInvalid={!!errors?.email?.message}>
                         <FormLabel>Email</FormLabel>
-                        <Input type="email" />
+                        <Input {...register("email")} type="email" />
                         <FormErrorMessage>
-                          {!!errors?.email?.message}
+                          {errors?.email?.message}
                         </FormErrorMessage>
                       </FormControl>
                       <FormControl isInvalid={!!errors?.password?.message}>
                         <FormLabel>Password</FormLabel>
-                        <Input type="password" />
+                        <Input {...register("password")} type="password" />
+                        <FormErrorMessage>
+                          {errors?.password?.message}
+                        </FormErrorMessage>
                       </FormControl>
-                      <Checkbox onChange={() => tooglePersist()}>
-                        Remember me?
-                      </Checkbox>
-                      {loading ? (
-                        <Button
-                          isLoading
-                          loadingText="Submitting"
-                          colorScheme={"green"}
-                        />
-                      ) : (
-                        <Button
-                          onClick={handleSubmit(onSubmit)}
-                          colorScheme={"green"}
-                        >
-                          Submit
-                        </Button>
-                      )}
+                      <VStack align="flex-start" gap={4}>
+                        <Checkbox onChange={() => tooglePersist()}>
+                          Remember me?
+                        </Checkbox>
+                        {loading ? (
+                          <Button
+                            isLoading
+                            loadingText="Submitting"
+                            colorScheme={"green"}
+                          />
+                        ) : (
+                          <Button
+                            onClick={handleSubmit(onSubmit)}
+                            colorScheme={"green"}
+                          >
+                            Submit
+                          </Button>
+                        )}
+                      </VStack>
                     </form>
                   </VStack>
                 </CardBody>
